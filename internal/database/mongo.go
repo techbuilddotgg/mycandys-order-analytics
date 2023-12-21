@@ -4,17 +4,12 @@ import (
 	"context"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"mycandys-order-analytics/internal/utils"
 	"time"
 )
 
 var Db *mongo.Database
 
-func Connect() *mongo.Client {
-	uri, err := utils.GetEnvVar("MONGO_URI")
-	if err != nil {
-		panic(err)
-	}
+func Connect(uri string) *mongo.Client {
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()

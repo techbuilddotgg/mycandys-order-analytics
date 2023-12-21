@@ -10,12 +10,15 @@ import (
 	"mycandys-order-analytics/docs"
 	"mycandys-order-analytics/internal/database"
 	"mycandys-order-analytics/internal/handlers"
+	"mycandys-order-analytics/internal/utils"
 )
 
 func main() {
 	_ = godotenv.Load(".env")
 
-	conn := database.Connect()
+	mongoUrl, _ := utils.GetEnvVar("MONGO_URI")
+
+	conn := database.Connect(mongoUrl)
 	defer database.Disconnect(conn, context.Background())
 
 	handler := handlers.NewHandler()
@@ -44,5 +47,4 @@ func main() {
 	app.GET("/analytics/each", handler.GetNumberOfCallForEachEndpoint)
 
 	app.Run(":8000")
-
 }
