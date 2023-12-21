@@ -17,6 +17,7 @@ func main() {
 	_ = godotenv.Load(".env")
 
 	mongoUrl, _ := utils.GetEnvVar("MONGO_URI")
+	println(mongoUrl)
 
 	conn := database.Connect(mongoUrl)
 	defer database.Disconnect(conn, context.Background())
