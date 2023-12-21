@@ -1,0 +1,82 @@
+definitions:
+  models.Endpoint:
+    properties:
+      timestamp:
+        type: integer
+      url:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /analytics:
+    post:
+      consumes:
+      - application/json
+      description: Add call endpoint
+      parameters:
+      - description: endpoint
+        in: body
+        name: endpoint
+        required: true
+        schema:
+          $ref: '#/definitions/models.Endpoint'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Endpoint'
+      summary: Add call endpoint
+      tags:
+      - Analytics
+  /analytics/each:
+    get:
+      description: Get number of call for each endpoint
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: integer
+            type: object
+      summary: Get number of call for each endpoint
+      tags:
+      - Analytics
+  /analytics/last:
+    get:
+      description: Get last called endpoint
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Endpoint'
+      summary: Get last called endpoint
+      tags:
+      - Analytics
+  /analytics/most:
+    get:
+      description: Get most called endpoint
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Get most called endpoint
+      tags:
+      - Analytics
+  /health:
+    get:
+      description: do health check
+      responses:
+        "200":
+          description: OK
+      summary: health check
+      tags:
+      - health
+swagger: "2.0"

@@ -1,0 +1,129 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/analytics": {
+            "post": {
+                "description": "Add call endpoint",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Analytics"
+                ],
+                "summary": "Add call endpoint",
+                "parameters": [
+                    {
+                        "description": "endpoint",
+                        "name": "endpoint",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Endpoint"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Endpoint"
+                        }
+                    }
+                }
+            }
+        },
+        "/analytics/each": {
+            "get": {
+                "description": "Get number of call for each endpoint",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Analytics"
+                ],
+                "summary": "Get number of call for each endpoint",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/analytics/last": {
+            "get": {
+                "description": "Get last called endpoint",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Analytics"
+                ],
+                "summary": "Get last called endpoint",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Endpoint"
+                        }
+                    }
+                }
+            }
+        },
+        "/analytics/most": {
+            "get": {
+                "description": "Get most called endpoint",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Analytics"
+                ],
+                "summary": "Get most called endpoint",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "description": "do health check",
+                "tags": [
+                    "health"
+                ],
+                "summary": "health check",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Endpoint": {
+            "type": "object",
+            "properties": {
+                "timestamp": {
+                    "type": "integer"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
