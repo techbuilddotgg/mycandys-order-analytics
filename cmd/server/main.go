@@ -34,6 +34,7 @@ func main() {
 	docs.SwaggerInfo.Description = "This is MyCandy's Orders Analytics  API server."
 	docs.SwaggerInfo.Version = "1.0"
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
+	docs.SwaggerInfo.Host = "localhost:8000"
 
 	app.Use(cors.New(config))
 	app.Use(gin.Logger())
